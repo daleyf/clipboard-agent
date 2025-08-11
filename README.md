@@ -1,111 +1,36 @@
-# clipboard-agent
+# ClipMind
 
-**Clipboard-Powered Personal AI Assistant for macOS**  
-_On every copy, get a PhD-level explanation — instantly._
+Simple clipboard watcher that queries a local `llama3.2:3b` model through [Ollama](https://ollama.ai) and prints a short explanation for whatever you copy.
 
----
+## Requirements
 
-## Overview
-ClipMind is a background process for macOS that listens to your clipboard and calls a **local LLM** whenever new text is copied.  
-It’s tuned as a **personal, PhD-level intelligence** that explains things clearly and concisely.
-
-If you’re reading Python docs (or anything else) and get stuck:
-1. Copy the confusing text.
-2. ClipMind detects it instantly.
-3. The AI explains it to you in a clear, direct way — either in terminal or a UI pop-up.
-
-No cloud calls. No data leaks. 100% local.
-
----
-
-## Features
-- **Instant AI Help** – Every copy triggers an AI response automatically.
-- **Local-Only** – Works with Ollama, llama.cpp, or any other local LLM.
-- **Clear Explanations** – System prompt tuned for precise, understandable answers.
-- **Language-Agnostic** – Works on docs, research papers, emails, or any text.
-- **Simple Setup** – No heavy dependencies or complex installs.
-
----
-
-## Example Workflow
-1. You’re reading the Python documentation for `asyncio`.
-2. You copy the section about `asyncio.run()` and its event loop behavior.
-3. ClipMind sees the change and calls your local LLM.
-4. The AI responds:
-    ```
-    asyncio.run() sets up the event loop for you, runs the provided coroutine until complete,
-    then closes the loop. This means you don’t need to manually manage the event loop unless
-    you have multiple coroutines running in parallel.
-    ```
-
----
+- Python 3.8+
+- [Ollama](https://ollama.ai) with the `llama3.2:3b` model
+- `pyperclip` (installed from `requirements.txt`)
 
 ## Installation
 
-### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/clipmind.git
-cd clipmind
-2. Install dependencies
-bash
-Copy
-Edit
+git clone https://github.com/yourusername/clipboard-agent.git
+cd clipboard-agent
 pip install -r requirements.txt
-Requirements:
+ollama pull llama3.2:3b
+```
 
-pyperclip (clipboard access)
+## Usage
 
-A local LLM CLI tool (Ollama recommended)
+Start the assistant:
 
-Install Ollama:
-
-bash
-Copy
-Edit
-brew install ollama
-ollama pull llama3  # or your preferred model
-Usage
-Run ClipMind:
-
-bash
-Copy
-Edit
+```bash
 python clipmind.py
-Copy any text — the AI will respond in your terminal.
+```
 
-Configuration
-In clipmind.py, you can adjust:
+Leave the terminal running. Whenever you copy text, the script sends it to `llama3.2:3b` and prints the model's explanation to the console.
 
-MODEL_NAME → the model you want to use (llama3, mistral, etc.)
+## Configuration
 
-SYSTEM_PROMPT → sets AI personality (defaults to "You are a personal PhD-level tutor...")
+You can edit `MODEL_NAME`, `SYSTEM_PROMPT`, or `DELAY` at the top of `clipmind.py` to change the model, adjust the tone, or tweak the polling interval.
 
-DELAY → clipboard polling rate in seconds (default 0.5)
+## License
 
-Privacy
-Your clipboard is never sent to the cloud.
-All AI calls are local, and no data leaves your machine.
-
-Roadmap
- macOS menu bar UI
-
- Desktop notifications instead of terminal-only output
-
- Configurable trigger hotkey (manual mode)
-
- Support for Windows/Linux
-
-License
-MIT License © 2025 Your Name
-
-pgsql
-Copy
-Edit
-
----
-
-I kept it **developer-friendly but clear for non-tech users** so you could drop it into a public repo without extra editing.  
-
-If you want, I can also add a **prompt-engineering section** in the README showing the exact *PhD-level explanation* system prompt so contributors can tweak it. That’d make the repo more self-documenting.  
-
-Do you want me to add that section?
+MIT

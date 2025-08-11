@@ -1,12 +1,12 @@
 # ClipMind
 
-Simple clipboard watcher that queries a local `llama3.2:3b` model through [Ollama](https://ollama.ai) and prints a short explanation for whatever you copy.
+Simple clipboard watcher that queries a local `llama3.2:3b` model through [Ollama](https://ollama.ai) and prints a short explanation for whatever you copy. Output is rendered with [Rich](https://rich.readthedocs.io) for readability.
 
 ## Requirements
 
 - Python 3.8+
 - [Ollama](https://ollama.ai) with the `llama3.2:3b` model
-- `pyperclip` (installed from `requirements.txt`)
+- `pyperclip` and `rich` (installed from `requirements.txt`)
 
 ## Installation
 
@@ -25,7 +25,7 @@ Start the assistant:
 python clipmind.py
 ```
 
-Leave the terminal running. Whenever you copy text, the script sends it to `llama3.2:3b` and prints the model's explanation to the console.
+Leave the terminal running. Whenever you copy text, the script sends it to `llama3.2:3b` and shows the copied text and explanation in a clear, colorized terminal layout.
 
 ## Configuration
 
